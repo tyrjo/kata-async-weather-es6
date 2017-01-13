@@ -3,7 +3,7 @@ import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
 import thunk from 'redux-thunk';
 import rootReducer from '../reducers';
 import createSagaMiddleware from 'redux-saga';
-import {helloSaga} from '../actions/sagas';
+import {rootSaga} from '../actions/sagas';
 
 function configureStoreProd(initialState) {
   const middlewares = [
@@ -41,7 +41,7 @@ function configureStoreDev(initialState) {
     )
   );
 
-  sagaMiddleware.run(helloSaga);
+  sagaMiddleware.run(rootSaga);
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
