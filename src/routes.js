@@ -6,7 +6,7 @@ import HomePage from './components/HomePage';
 import FuelSavingsPage from './containers/FuelSavingsPage'; // eslint-disable-line import/no-named-as-default
 import AboutPage from './components/AboutPage';
 import NotFoundPage from './components/NotFoundPage';
-import WeatherPage from './components/WeatherPage';
+import WeatherPage from './containers/WeatherPage';
 
 export default (
   <Route path="/" component={App}>

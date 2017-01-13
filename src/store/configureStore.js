@@ -2,6 +2,8 @@ import {createStore, compose, applyMiddleware} from 'redux';
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
 import thunk from 'redux-thunk';
 import rootReducer from '../reducers';
+import createSagaMiddleware from 'redux-saga';
+import {helloSaga} from '../actions/sagas';
 
 function configureStoreProd(initialState) {
   const middlewares = [
@@ -19,6 +21,8 @@ function configureStoreProd(initialState) {
 }
 
 function configureStoreDev(initialState) {
+  const sagaMiddleware = createSagaMiddleware();
+
   const middlewares = [
     // Add other middleware on this line...
 
@@ -28,6 +32,7 @@ function configureStoreDev(initialState) {
     // thunk middleware can also accept an extra argument to be passed to each thunk action
     // https://github.com/gaearon/redux-thunk#injecting-a-custom-argument
     thunk,
+    sagaMiddleware,
   ];
 
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // add support for Redux dev tools
@@ -35,6 +40,8 @@ function configureStoreDev(initialState) {
     applyMiddleware(...middlewares)
     )
   );
+
+  sagaMiddleware.run(helloSaga);
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers

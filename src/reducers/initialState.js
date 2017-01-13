@@ -1,4 +1,9 @@
 export default {
+  weather: {
+    zipcode: "MATT",
+    temperature: 0,
+    city: ""
+  },
   fuelSavings: {
     newMpg: '',
     tradeMpg: '',
